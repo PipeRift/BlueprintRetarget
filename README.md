@@ -20,11 +20,11 @@ It won't fix references and blueprints could still fail if the parent has change
 
 1. When having an invalid blueprint, right click on it to see *"Retarget invalid parent"*
 
-<img align="right" src="Content/Readme/ContextMenu.png" /> 
+<img width=200 src="Content/Readme/ContextMenu.png" /> 
 
-2. After this, a warning will pop-up... to warn you
+2. After this, a warning will pop up... to warn you
 
-<img align="right" src="Content/Readme/Warning.png" />
+<img width=400 src="Content/Readme/Warning.png" />
 
 3. Finally, select the missing parent from the list. The blueprint will be reparented and you should be able to use it again.
-<img align="right" src="Content/Readme/SelectClass.png" />
+<img width=400 src="Content/Readme/SelectClass.png" />
