@@ -1,0 +1,22 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Blueprint Retarget",
+	"Description": "A simple tool that helps retarget blueprints with invalid parent classes",
+	"Category": "Other",
+	"CreatedBy": "Piperift",
+	"CreatedByURL": "https://piperift.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"Modules": [
+		{
+			"Name": "BlueprintRetarget",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
