@@ -17,12 +17,14 @@ It won't fix references and blueprints could still fail if the parent has change
 **Use it only when the parent class is missing.**
 
 ## Usage
-<img align="left" src="Content/Readme/ContextMenu.png">Context Menu</img> When having an invalid blueprint, right click on it to see *"Retarget invalid parent"*
 
----
+1. When having an invalid blueprint, right click on it to see *"Retarget invalid parent"*
 
-<img align="left" src="Content/Readme/Warning.png">Warning</img>After this, a warning will pop-up... to warn you
+<img align="right" src="Content/Readme/ContextMenu.png" /> 
 
----
+2. After this, a warning will pop-up... to warn you
 
-<img align="left" src="Content/Readme/SelectClass.png">Select Class</img>Finally, select the missing parent from the list. The blueprint will be reparented and you should be able to use it again.
+<img align="right" src="Content/Readme/Warning.png" />
+
+3. Finally, select the missing parent from the list. The blueprint will be reparented and you should be able to use it again.
+<img align="right" src="Content/Readme/SelectClass.png" />
