@@ -265,7 +265,7 @@ struct FRetargetClassExtension : public FContentBrowserSelectedAssetExtensionBas
 	void ReparentBlueprint(UBlueprint* Blueprint, UClass* ChosenClass) {
 		check(Blueprint);
 
-		if ((Blueprint != NULL) && (ChosenClass != NULL) && (ChosenClass != Blueprint->ParentClass))
+		if ((Blueprint != nullptr) && (ChosenClass != nullptr) && (ChosenClass != Blueprint->ParentClass))
 		{
 			// Notify user, about common interfaces
 			bool bReparent = true;
@@ -373,7 +373,7 @@ struct FRetargetClassExtension : public FContentBrowserSelectedAssetExtensionBas
 
 	void EnsureBlueprintIsUpToDate(UBlueprint* Blueprint) {
 
-		// Purge any NULL graphs
+		// Purge any nullptr graphs
 		FBlueprintEditorUtils::PurgeNullGraphs(Blueprint);
 
 		// Make sure the blueprint is cosmetically up to date
