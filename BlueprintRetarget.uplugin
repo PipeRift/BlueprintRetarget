@@ -10,8 +10,9 @@
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
+	"EngineVersion": "5.0",
 	"CanContainContent": false,
-	"IsBetaVersion": false,
+	"Installed": true,
 	"Modules": [
 		{
 			"Name": "BlueprintRetarget",

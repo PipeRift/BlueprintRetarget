@@ -1,4 +1,4 @@
-// Copyright 2015-2020 Piperift. All Rights Reserved.
+// Copyright 2015-2019 Piperift. All Rights Reserved.
 
 #include "ContentBrowserExtensions.h"
 
@@ -37,6 +37,8 @@
 
 
 #define LOCTEXT_NAMESPACE "BlueprintRetarget"
+
+DEFINE_LOG_CATEGORY_STATIC(LogBlueprintReparent, Log, All);
 
 
 class FRetargetBlueprintFilter : public IClassViewerFilter
@@ -119,7 +121,7 @@ struct FRetargetClassExtension : public FContentBrowserSelectedAssetExtensionBas
 		for (auto AssetIt = SelectedAssets.CreateConstIterator(); AssetIt; ++AssetIt)
 		{
 			const FAssetData& AssetData = *AssetIt;
-			if (TAssetPtr<UBlueprint> BP = Cast<UBlueprint>(AssetData.GetAsset()))
+			if (TSoftObjectPtr<UBlueprint> BP = Cast<UBlueprint>(AssetData.GetAsset()))
 			{
 				BPs.Add(BP.Get());
 			}
@@ -157,9 +159,9 @@ struct FRetargetClassExtension : public FContentBrowserSelectedAssetExtensionBas
 			Options.bShowObjectRootClass = true;
 
 			Options.bIsBlueprintBaseOnly = true; // Only want blueprint base classes
-			Options.bShowUnloadedBlueprints = true;
-
-			Options.ClassFilter = PrepareFilter(BPs);
+			Options.bShowUnloadedBlueprints = true;		
+		
+			Options.ClassFilters.Add(PrepareFilter(BPs).ToSharedRef());
 		}
 
 		// Temporally hide custom picker from ClassPicker
@@ -265,7 +267,7 @@ struct FRetargetClassExtension : public FContentBrowserSelectedAssetExtensionBas
 	void ReparentBlueprint(UBlueprint* Blueprint, UClass* ChosenClass) {
 		check(Blueprint);
 
-		if ((Blueprint != nullptr) && (ChosenClass != nullptr) && (ChosenClass != Blueprint->ParentClass))
+		if ((Blueprint != NULL) && (ChosenClass != NULL) && (ChosenClass != Blueprint->ParentClass))
 		{
 			// Notify user, about common interfaces
 			bool bReparent = true;
@@ -373,7 +375,7 @@ struct FRetargetClassExtension : public FContentBrowserSelectedAssetExtensionBas
 
 	void EnsureBlueprintIsUpToDate(UBlueprint* Blueprint) {
 
-		// Purge any nullptr graphs
+		// Purge any NULL graphs
 		FBlueprintEditorUtils::PurgeNullGraphs(Blueprint);
 
 		// Make sure the blueprint is cosmetically up to date
@@ -467,7 +469,7 @@ public:
 		MenuBuilder.AddMenuEntry(
 			LOCTEXT("RetargetClass", "Retarget invalid parent"),
 			LOCTEXT("RetargetClass_Tooltip", "Reparents a blueprint's parent class (Useful when parent class is missing or invalid)"),
-			FSlateIcon(FEditorStyle::GetStyleSetName(), "ClassIcon.Note"),
+			FSlateIcon(FAppStyle::GetAppStyleSetName(), "ClassIcon.Note"),
 			Action_RetargetClass,
 			NAME_None,
 			EUserInterfaceActionType::Button);
@@ -503,7 +505,7 @@ public:
 		return ContentBrowserModule.GetAllAssetViewContextMenuExtenders();
 	}
 
-	static bool IsInvalidBlueprint(const TAssetPtr<UBlueprint>& BP) {
+	static bool IsInvalidBlueprint(const TSoftObjectPtr<UBlueprint>& BP) {
 		return BP && (!BP->SkeletonGeneratedClass || !BP->GeneratedClass);
 	}
 };
